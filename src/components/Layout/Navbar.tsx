@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../UI/Button';
-import { generateResume } from '../../utils/generateResume';
+
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,8 +32,8 @@ export const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled
-          ? 'bg-white/80 backdrop-blur-xl border-slate-200 py-3'
-          : 'bg-transparent border-transparent py-6'
+        ? 'bg-white/80 backdrop-blur-xl border-slate-200 py-3'
+        : 'bg-transparent border-transparent py-6'
         }`}
     >
       <div className="container mx-auto px-6 md:px-8 max-w-7xl flex items-center justify-between">
@@ -57,7 +57,14 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="secondary" size="sm" onClick={generateResume} className="hidden sm:inline-flex">
+          <Button variant="secondary" size="sm" onClick={() => {
+            const link = document.createElement('a');
+            link.href = `${import.meta.env.BASE_URL}Resume_Engineering_EN.pdf`;
+            link.download = 'Resume_Engineering_EN.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }} className="hidden sm:inline-flex">
             Resume
           </Button>
           <Button variant="primary" size="sm" onClick={() => window.location.href = "mailto:andrescorredor345@gmail.com"}>
