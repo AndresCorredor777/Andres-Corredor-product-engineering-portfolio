@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
     },
-    base: '/Andres-Corredor-product-engineering-portfolio/',
+    base: mode === 'production' ? '/Andres-Corredor-product-engineering-portfolio/' : '/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
